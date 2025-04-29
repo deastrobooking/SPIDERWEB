@@ -2,6 +2,7 @@ modules = ["rust"]
 
 [nix]
 channel = "stable-24_05"
+packages = ["rustup", "rustc", "cargo", "alsa-lib", "pkg-config"]
 
 [workflows]
 runButton = "Project"
@@ -24,4 +25,4 @@ task = "shell.exec"
 args = "cargo build"
 
 [deployment]
-run = ["sh", "-c", "cargo build"]
+run = ["sh", "-c", "bash -c \"which cargo && cargo build\""]

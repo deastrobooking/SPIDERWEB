@@ -1,4 +1,5 @@
 // Digital Signal Processing utilities for the synthesizer
+// This module contains utility functions for audio processing used throughout the synth
 
 // Convert MIDI note number to frequency
 // Note: A4 = 69 = 440Hz

@@ -1,11 +1,10 @@
 use vst::plugin::PluginParameters;
 use vst::util::AtomicFloat;
-use std::sync::Arc;
 
 #[derive(Clone, Copy)]
 pub enum Parameter {
     // Oscillator parameters
-    OscillatorType, // 0: Sine, 0.25: Square, 0.5: Saw, 0.75: Triangle
+    OscillatorType, // Basic oscillator types + wavetable and FM
     
     // ADSR envelope parameters
     Attack,
@@ -17,6 +16,14 @@ pub enum Parameter {
     FilterType,     // 0: LP, 0.33: HP, 0.66: BP
     FilterCutoff,
     FilterResonance,
+    
+    // FM synthesis parameters
+    FMCarrierRatio,  // Ratio between carrier frequency and base frequency
+    FMModulatorRatio, // Ratio between modulator frequency and base frequency
+    FMModIndex,      // Modulation index (intensity of modulation)
+    
+    // Wavetable parameters
+    WavetableHarmonics, // Controls the number of harmonics in complex wavetable
     
     // Master parameters
     MasterGain,
@@ -42,6 +49,10 @@ impl Parameter {
             Parameter::FilterType => "Filter Type".to_string(),
             Parameter::FilterCutoff => "Filter Cutoff".to_string(),
             Parameter::FilterResonance => "Filter Resonance".to_string(),
+            Parameter::FMCarrierRatio => "FM Carrier Ratio".to_string(),
+            Parameter::FMModulatorRatio => "FM Modulator Ratio".to_string(),
+            Parameter::FMModIndex => "FM Mod Index".to_string(),
+            Parameter::WavetableHarmonics => "Wavetable Harmonics".to_string(),
             Parameter::MasterGain => "Master Gain".to_string(),
             Parameter::COUNT => "".to_string(),
         }
@@ -58,6 +69,10 @@ impl Parameter {
             Parameter::FilterType => 0.0,          // Low pass
             Parameter::FilterCutoff => 1.0,        // 20kHz (fully open)
             Parameter::FilterResonance => 0.1,     // Low resonance
+            Parameter::FMCarrierRatio => 0.5,      // 1.0 ratio (maps to 0.5-2.0)
+            Parameter::FMModulatorRatio => 0.5,    // 1.0 ratio (maps to 0.5-8.0)
+            Parameter::FMModIndex => 0.3,          // Moderate modulation index
+            Parameter::WavetableHarmonics => 0.5,  // Medium number of harmonics
             Parameter::MasterGain => 0.5,          // 50% volume
             Parameter::COUNT => 0.0,
         }
@@ -68,6 +83,7 @@ impl Parameter {
         match self {
             Parameter::Attack | Parameter::Decay | Parameter::Release => "s".to_string(),
             Parameter::FilterCutoff => "Hz".to_string(),
+            Parameter::FMCarrierRatio | Parameter::FMModulatorRatio => "x".to_string(),
             _ => "".to_string(),
         }
     }
@@ -77,10 +93,12 @@ impl Parameter {
         match self {
             Parameter::OscillatorType => {
                 match value {
-                    v if v < 0.25 => "Sine".to_string(),
-                    v if v < 0.5 => "Square".to_string(),
-                    v if v < 0.75 => "Saw".to_string(),
-                    _ => "Triangle".to_string(),
+                    v if v < 0.17 => "Sine".to_string(),
+                    v if v < 0.33 => "Square".to_string(),
+                    v if v < 0.5 => "Saw".to_string(),
+                    v if v < 0.67 => "Triangle".to_string(),
+                    v if v < 0.83 => "Wavetable".to_string(),
+                    _ => "FM".to_string(),
                 }
             },
             Parameter::Attack | Parameter::Decay | Parameter::Release => {
@@ -108,6 +126,26 @@ impl Parameter {
             Parameter::FilterResonance => {
                 format!("{:.1}", value)
             },
+            Parameter::FMCarrierRatio => {
+                // Map 0-1 to carrier ratio range (0.5 to 2.0)
+                let ratio = 0.5 + value * 1.5;
+                format!("{:.2}x", ratio)
+            },
+            Parameter::FMModulatorRatio => {
+                // Map 0-1 to modulator ratio range (0.5 to 8.0, exponential)
+                let ratio = 0.5 * (2.0_f32.powf(4.0 * value));
+                format!("{:.2}x", ratio)
+            },
+            Parameter::FMModIndex => {
+                // Map 0-1 to modulation index (0 to 10)
+                let index = value * 10.0;
+                format!("{:.1}", index)
+            },
+            Parameter::WavetableHarmonics => {
+                // Map 0-1 to number of harmonics (1 to 32)
+                let harmonics = (1.0 + value * 31.0).round();
+                format!("{:.0}", harmonics)
+            },
             Parameter::MasterGain => {
                 format!("{:.0}%", value * 100.0) // 0-100%
             },
@@ -118,12 +156,14 @@ impl Parameter {
 
 pub struct SynthParameters {
     values: Vec<AtomicFloat>,
+    pub time: f32,     // Global time for modulation effects
 }
 
 impl Default for SynthParameters {
     fn default() -> Self {
         let mut params = SynthParameters {
             values: Vec::with_capacity(Parameter::COUNT as usize),
+            time: 0.0,
         };
         
         // Initialize all parameters with default values
@@ -137,7 +177,11 @@ impl Default for SynthParameters {
                 5 => Parameter::FilterType,
                 6 => Parameter::FilterCutoff,
                 7 => Parameter::FilterResonance,
-                8 => Parameter::MasterGain,
+                8 => Parameter::FMCarrierRatio,
+                9 => Parameter::FMModulatorRatio,
+                10 => Parameter::FMModIndex,
+                11 => Parameter::WavetableHarmonics,
+                12 => Parameter::MasterGain,
                 _ => Parameter::COUNT,
             };
             
@@ -185,7 +229,11 @@ impl PluginParameters for SynthParameters {
                 5 => Parameter::FilterType,
                 6 => Parameter::FilterCutoff,
                 7 => Parameter::FilterResonance,
-                8 => Parameter::MasterGain,
+                8 => Parameter::FMCarrierRatio,
+                9 => Parameter::FMModulatorRatio,
+                10 => Parameter::FMModIndex,
+                11 => Parameter::WavetableHarmonics,
+                12 => Parameter::MasterGain,
                 _ => Parameter::COUNT,
             };
             
@@ -209,7 +257,11 @@ impl PluginParameters for SynthParameters {
                 5 => Parameter::FilterType,
                 6 => Parameter::FilterCutoff,
                 7 => Parameter::FilterResonance,
-                8 => Parameter::MasterGain,
+                8 => Parameter::FMCarrierRatio,
+                9 => Parameter::FMModulatorRatio,
+                10 => Parameter::FMModIndex,
+                11 => Parameter::WavetableHarmonics,
+                12 => Parameter::MasterGain,
                 _ => Parameter::COUNT,
             };
             
@@ -231,7 +283,11 @@ impl PluginParameters for SynthParameters {
                 5 => Parameter::FilterType,
                 6 => Parameter::FilterCutoff,
                 7 => Parameter::FilterResonance,
-                8 => Parameter::MasterGain,
+                8 => Parameter::FMCarrierRatio,
+                9 => Parameter::FMModulatorRatio,
+                10 => Parameter::FMModIndex,
+                11 => Parameter::WavetableHarmonics,
+                12 => Parameter::MasterGain,
                 _ => Parameter::COUNT,
             };
             

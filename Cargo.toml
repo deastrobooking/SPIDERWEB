@@ -7,7 +7,11 @@ description = "A basic VST synthesizer plugin with oscillators, ADSR envelope, a
 
 [lib]
 name = "basic_synth_vst"
-crate-type = ["cdylib"]
+crate-type = ["cdylib", "rlib"]
+
+[[bin]]
+name = "test_synth"
+path = "src/bin/test_synth.rs"
 
 [dependencies]
 vst = "0.3.0"
@@ -16,6 +20,10 @@ log = "0.4"
 atomic_float = "0.1"
 # Faster math operations
 realfft = "3.1.0"
+# Audio output for tester
+cpal = "0.15.2"
+hound = "3.5.1"  # For WAV file output
+clap = "4.4.6"   # For command-line interface
 # For now, let's comment out UI dependencies as they're causing build issues
 # We'll focus on the core synth functionality first
 # raw-window-handle = "0.5.0"
