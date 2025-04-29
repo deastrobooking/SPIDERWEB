@@ -1,0 +1,27 @@
+modules = ["rust"]
+
+[nix]
+channel = "stable-24_05"
+
+[workflows]
+runButton = "Project"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "RustSynthBuilder"
+
+[[workflows.workflow]]
+name = "RustSynthBuilder"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cargo build"
+
+[deployment]
+run = ["sh", "-c", "cargo build"]
