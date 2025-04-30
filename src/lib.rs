@@ -6,8 +6,7 @@ pub mod oscillator;
 pub mod envelope;
 pub mod filter;
 pub mod parameters;
-// Temporarily comment out UI module since we've disabled UI dependencies
-// mod ui;
+pub mod ui;
 mod dsp_utils;
 mod suppress_warnings; // Keeping this as empty module for future use
 pub mod tester;        // Add tester module for standalone testing
@@ -159,6 +158,7 @@ struct BasicSynth {
     voices: Vec<Voice>,
     filter: Filter,
     note_to_voice: HashMap<u8, usize>,
+    editor: Option<ui::SynthEditor>,
 }
 
 impl BasicSynth {
@@ -172,10 +172,11 @@ impl BasicSynth {
 
         BasicSynth {
             sample_rate: 44100.0,
-            params,
+            params: params.clone(),
             voices,
             filter: Filter::new(44100.0),
             note_to_voice: HashMap::new(),
+            editor: None,
         }
     }
 
@@ -405,6 +406,18 @@ impl Plugin for BasicSynth {
 
     fn get_parameter_object(&mut self) -> Arc<dyn PluginParameters> {
         Arc::clone(&self.params) as Arc<dyn PluginParameters>
+    }
+    
+    fn get_editor(&mut self) -> Option<Box<dyn vst::editor::Editor>> {
+        if self.editor.is_none() {
+            self.editor = Some(ui::SynthEditor::new(Arc::clone(&self.params)));
+        }
+        
+        if let Some(editor) = &mut self.editor {
+            Some(Box::new(editor.clone()))
+        } else {
+            None
+        }
     }
 }
 

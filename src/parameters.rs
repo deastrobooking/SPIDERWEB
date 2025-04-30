@@ -197,7 +197,7 @@ impl SynthParameters {
         self.values[param as usize].get()
     }
     
-    fn set_parameter(&self, param: Parameter, value: f32) {
+    pub fn set_parameter(&self, param: Parameter, value: f32) {
         self.values[param as usize].set(value);
     }
 }
