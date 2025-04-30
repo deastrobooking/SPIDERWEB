@@ -9,6 +9,7 @@ pub fn midi_note_to_freq(note: u8) -> f32 {
 
 // Convert frequency to MIDI note number
 pub fn freq_to_midi_note(freq: f32) -> f32 {
+
     69.0 + 12.0 * (freq / 440.0).log2()
 }
 
