@@ -96,7 +96,7 @@ wide = "0.7"
 chrono = { version = "0.4", features = ["serde"] }
 
 # Configuration
-config = "0.13"
+# config = "0.13"  # Temporarily disabled due to dependency conflicts
 toml = "0.8"
 
 # Networking for distributed training
