@@ -2,7 +2,7 @@ modules = ["rust"]
 
 [nix]
 channel = "stable-24_05"
-packages = ["rustup", "rustc", "cargo", "alsa-lib", "pkg-config", "zip"]
+packages = ["rustup", "rustc", "cargo", "alsa-lib", "pkg-config", "zip", "openssl"]
 
 [workflows]
 runButton = "Project"
