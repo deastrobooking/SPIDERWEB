@@ -32,7 +32,7 @@ lapack-src = { version = "0.8", features = ["openblas"] }
 candle-core = "0.3"
 candle-nn = "0.3"
 candle-transformers = "0.3"
-wgpu = "0.18"
+wgpu = "0.19"
 
 # Parallel processing
 rayon = "1.8"
