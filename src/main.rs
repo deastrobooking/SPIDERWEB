@@ -59,7 +59,7 @@ async fn initialize_framework() -> Result<()> {
 
     // Initialize distributed training if multiple GPUs available
     if accelerators.iter().any(|a| matches!(a, wrappers::AcceleratorType::CUDA)) {
-        distributed::initialize_cuda_context()?;
+        backend::initialize_cuda_context()?;
         info!("CUDA distributed training initialized");
     }
 
