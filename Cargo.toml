@@ -17,6 +17,10 @@ path = "src/bin/examples.rs"
 name = "benchmark"
 path = "src/bin/benchmark.rs"
 
+[[bin]]
+name = "ml_server"
+path = "src/main.rs"
+
 [dependencies]
 # Core numerical computing
 ndarray = { version = "0.15", features = ["rayon", "serde"] }
@@ -63,8 +67,13 @@ tqdm = "0.5"
 # Plotting and visualization
 plotters = "0.3"
 
-# Async runtime
+# Async runtime and web server
 tokio = { version = "1.0", features = ["full"] }
+actix-web = "4.4"
+uuid = { version = "1.6", features = ["v4", "serde"] }
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+async-trait = "0.1"
 
 # Error handling
 anyhow = "1.0"
