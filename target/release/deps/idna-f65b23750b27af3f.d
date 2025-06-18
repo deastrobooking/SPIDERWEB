@@ -1,0 +1,10 @@
+/home/runner/workspace/target/release/deps/libidna-f65b23750b27af3f.rmeta: /home/runner/workspace/.local/share/.cargo/registry/src/index.crates.io-6f17d22bba15001f/idna-1.0.3/src/lib.rs /home/runner/workspace/.local/share/.cargo/registry/src/index.crates.io-6f17d22bba15001f/idna-1.0.3/src/deprecated.rs /home/runner/workspace/.local/share/.cargo/registry/src/index.crates.io-6f17d22bba15001f/idna-1.0.3/src/punycode.rs /home/runner/workspace/.local/share/.cargo/registry/src/index.crates.io-6f17d22bba15001f/idna-1.0.3/src/uts46.rs
+
+/home/runner/workspace/target/release/deps/libidna-f65b23750b27af3f.rlib: /home/runner/workspace/.local/share/.cargo/registry/src/index.crates.io-6f17d22bba15001f/idna-1.0.3/src/lib.rs /home/runner/workspace/.local/share/.cargo/registry/src/index.crates.io-6f17d22bba15001f/idna-1.0.3/src/deprecated.rs /home/runner/workspace/.local/share/.cargo/registry/src/index.crates.io-6f17d22bba15001f/idna-1.0.3/src/punycode.rs /home/runner/workspace/.local/share/.cargo/registry/src/index.crates.io-6f17d22bba15001f/idna-1.0.3/src/uts46.rs
+
+/home/runner/workspace/target/release/deps/idna-f65b23750b27af3f.d: /home/runner/workspace/.local/share/.cargo/registry/src/index.crates.io-6f17d22bba15001f/idna-1.0.3/src/lib.rs /home/runner/workspace/.local/share/.cargo/registry/src/index.crates.io-6f17d22bba15001f/idna-1.0.3/src/deprecated.rs /home/runner/workspace/.local/share/.cargo/registry/src/index.crates.io-6f17d22bba15001f/idna-1.0.3/src/punycode.rs /home/runner/workspace/.local/share/.cargo/registry/src/index.crates.io-6f17d22bba15001f/idna-1.0.3/src/uts46.rs
+
+/home/runner/workspace/.local/share/.cargo/registry/src/index.crates.io-6f17d22bba15001f/idna-1.0.3/src/lib.rs:
+/home/runner/workspace/.local/share/.cargo/registry/src/index.crates.io-6f17d22bba15001f/idna-1.0.3/src/deprecated.rs:
+/home/runner/workspace/.local/share/.cargo/registry/src/index.crates.io-6f17d22bba15001f/idna-1.0.3/src/punycode.rs:
+/home/runner/workspace/.local/share/.cargo/registry/src/index.crates.io-6f17d22bba15001f/idna-1.0.3/src/uts46.rs:

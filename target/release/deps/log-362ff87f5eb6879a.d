@@ -1,0 +1,10 @@
+/home/runner/workspace/target/release/deps/liblog-362ff87f5eb6879a.rmeta: /home/runner/workspace/.local/share/.cargo/registry/src/index.crates.io-6f17d22bba15001f/log-0.4.27/src/lib.rs /home/runner/workspace/.local/share/.cargo/registry/src/index.crates.io-6f17d22bba15001f/log-0.4.27/src/macros.rs /home/runner/workspace/.local/share/.cargo/registry/src/index.crates.io-6f17d22bba15001f/log-0.4.27/src/serde.rs /home/runner/workspace/.local/share/.cargo/registry/src/index.crates.io-6f17d22bba15001f/log-0.4.27/src/__private_api.rs
+
+/home/runner/workspace/target/release/deps/liblog-362ff87f5eb6879a.rlib: /home/runner/workspace/.local/share/.cargo/registry/src/index.crates.io-6f17d22bba15001f/log-0.4.27/src/lib.rs /home/runner/workspace/.local/share/.cargo/registry/src/index.crates.io-6f17d22bba15001f/log-0.4.27/src/macros.rs /home/runner/workspace/.local/share/.cargo/registry/src/index.crates.io-6f17d22bba15001f/log-0.4.27/src/serde.rs /home/runner/workspace/.local/share/.cargo/registry/src/index.crates.io-6f17d22bba15001f/log-0.4.27/src/__private_api.rs
+
+/home/runner/workspace/target/release/deps/log-362ff87f5eb6879a.d: /home/runner/workspace/.local/share/.cargo/registry/src/index.crates.io-6f17d22bba15001f/log-0.4.27/src/lib.rs /home/runner/workspace/.local/share/.cargo/registry/src/index.crates.io-6f17d22bba15001f/log-0.4.27/src/macros.rs /home/runner/workspace/.local/share/.cargo/registry/src/index.crates.io-6f17d22bba15001f/log-0.4.27/src/serde.rs /home/runner/workspace/.local/share/.cargo/registry/src/index.crates.io-6f17d22bba15001f/log-0.4.27/src/__private_api.rs
+
+/home/runner/workspace/.local/share/.cargo/registry/src/index.crates.io-6f17d22bba15001f/log-0.4.27/src/lib.rs:
+/home/runner/workspace/.local/share/.cargo/registry/src/index.crates.io-6f17d22bba15001f/log-0.4.27/src/macros.rs:
+/home/runner/workspace/.local/share/.cargo/registry/src/index.crates.io-6f17d22bba15001f/log-0.4.27/src/serde.rs:
+/home/runner/workspace/.local/share/.cargo/registry/src/index.crates.io-6f17d22bba15001f/log-0.4.27/src/__private_api.rs:
