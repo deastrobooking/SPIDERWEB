@@ -1,82 +1,121 @@
-# Basic Synthesizer VST Plugin
+# Rust ML Framework - TensorFlow/PyTorch Clone
 
 ## Overview
 
-This project is a VST synthesizer plugin written in Rust, designed to provide basic synthesis capabilities with oscillators, ADSR envelope, and filters. The project includes both a VST plugin library and a standalone test binary for development and testing purposes.
+This project is a comprehensive machine learning framework written in Rust that clones all major features of TensorFlow and PyTorch. It provides a complete ecosystem for machine learning development including tensor operations, neural networks, optimizers, data loading, computer vision models, NLP utilities, and distributed training capabilities.
+
+The framework is designed to be both performant and user-friendly, offering APIs similar to PyTorch's nn.Module and TensorFlow's layers while leveraging Rust's safety and performance characteristics.
 
 ## System Architecture
 
-The system follows a modular architecture with separate components for different aspects of audio synthesis:
+The framework follows a modular architecture with clear separation of concerns:
 
-- **Plugin Architecture**: Built using the VST 2.4 framework with Rust bindings
-- **Audio Processing**: Real-time audio synthesis with configurable parameters
-- **Testing Framework**: Standalone binary for testing synthesis without a DAW
-- **GUI Support**: Planned integration with iced-based user interface (dependencies present but implementation pending)
+- **Core Tensor System**: Multi-dimensional arrays with automatic differentiation support
+- **Neural Network Layers**: Comprehensive collection of layers (Linear, Conv, RNN, Transformer, etc.)
+- **Optimization Algorithms**: Full suite of optimizers (SGD, Adam, AdamW, RMSprop, Adagrad)
+- **Loss Functions**: Standard loss functions for classification and regression tasks
+- **Data Loading**: Efficient data loading and preprocessing pipelines
+- **Computer Vision**: Pre-built CNN architectures and image processing utilities
+- **Natural Language Processing**: Text processing, tokenization, and language models
+- **Distributed Training**: Multi-GPU and multi-node training support
 
 ## Key Components
 
-### Core Synthesis Modules
-- **Oscillators** (`src/oscillator.rs`): Generate basic waveforms (sine, square, sawtooth, triangle)
-- **Envelope Generator** (`src/envelope.rs`): ADSR envelope for amplitude and filter modulation
-- **Filters** (`src/filter.rs`): Audio filtering capabilities for tone shaping
-- **DSP Utilities** (`src/dsp_utils.rs`): Common digital signal processing functions
+### Core Framework
+- **Tensor Operations** (`src/tensor.rs`): N-dimensional arrays with GPU support and automatic differentiation
+- **Autograd System** (`src/autograd/`): Automatic gradient computation for backpropagation
+- **Neural Networks** (`src/nn/`): Complete neural network building blocks
+- **Optimizers** (`src/optim/`): State-of-the-art optimization algorithms
+- **Loss Functions** (`src/loss/`): Comprehensive loss function implementations
 
-### Plugin Infrastructure
-- **Main Library** (`src/lib.rs`): VST plugin entry point and host interface
-- **Parameters** (`src/parameters.rs`): Plugin parameter management and automation
-- **Tester Module** (`src/tester.rs`): Testing utilities for audio output validation
+### Neural Network Layers
+- **Linear Layers** (`src/nn/linear.rs`): Fully connected layers with various initialization strategies
+- **Convolutional Layers** (`src/nn/conv.rs`): 1D, 2D, and 3D convolution operations
+- **Activation Functions** (`src/nn/activation.rs`): ReLU, Sigmoid, Tanh, GELU, Swish, Softmax
+- **Normalization** (`src/nn/normalization.rs`): BatchNorm, LayerNorm, GroupNorm
+- **Pooling** (`src/nn/pooling.rs`): MaxPool, AvgPool, AdaptivePool operations
+- **Recurrent Networks** (`src/nn/rnn.rs`): RNN, LSTM, GRU implementations
+- **Transformers** (`src/nn/transformer.rs`): Multi-head attention and transformer blocks
+- **Regularization** (`src/nn/dropout.rs`): Dropout for overfitting prevention
 
-### Audio Output and Testing
-- **Test Binary** (`src/bin/test_synth.rs`): Standalone application for testing synthesis
-- **Audio Backend**: CPAL for cross-platform audio output
-- **File Export**: Hound library for WAV file generation
+### Data and Training Infrastructure
+- **Data Loading** (`src/data/`): Datasets, DataLoaders, and preprocessing pipelines
+- **Metrics** (`src/metrics/`): Accuracy, precision, recall, F1-score, AUC-ROC
+- **Transformations** (`src/transforms/`): Image and data augmentation utilities
+- **Utilities** (`src/utils/`): Checkpointing, early stopping, progress tracking
+
+### Domain-Specific Modules
+- **Computer Vision** (`src/vision/`): ResNet, VGG, CNN architectures for image tasks
+- **Natural Language Processing** (`src/nlp/`): Tokenizers, embeddings, language models
+- **Distributed Training** (`src/distributed/`): Multi-GPU and distributed training support
+- **Backend Support** (`src/backend/`): CPU and GPU compute backends
+
+### Applications and Examples
+- **Comprehensive Examples** (`src/bin/examples.rs`): Full demonstrations of all framework features
+- **Benchmarking** (`src/bin/benchmark.rs`): Performance testing and optimization utilities
 
 ## Data Flow
 
-1. **MIDI Input**: VST host sends MIDI events to the plugin
-2. **Parameter Processing**: Plugin parameters are processed and applied to synthesis modules
-3. **Audio Generation**: Oscillators generate basic waveforms based on MIDI note data
-4. **Envelope Application**: ADSR envelope shapes the amplitude over time
-5. **Filtering**: Audio signal passes through configurable filters
-6. **Audio Output**: Processed audio is sent back to the VST host or audio device
+1. **Data Loading**: Raw data is loaded and preprocessed through DataLoaders
+2. **Model Definition**: Neural networks are constructed using modular layer components
+3. **Forward Pass**: Data flows through the network producing predictions
+4. **Loss Computation**: Predictions are compared against targets using loss functions
+5. **Backward Pass**: Gradients are computed automatically through the autograd system
+6. **Optimization**: Parameters are updated using sophisticated optimization algorithms
+7. **Evaluation**: Model performance is assessed using comprehensive metrics
 
 ## External Dependencies
 
-### Audio Processing
-- **VST Framework**: `vst` crate for VST 2.4 plugin development
-- **Audio Output**: `cpal` for cross-platform audio device access
-- **DSP Libraries**: `realfft` for frequency domain processing
-- **File I/O**: `hound` for WAV file operations
+### Core Numerical Computing
+- **NDArray**: `ndarray` for n-dimensional array operations with BLAS/LAPACK support
+- **Linear Algebra**: `ndarray-linalg`, `blas-src`, `lapack-src` for optimized math operations
+- **GPU Acceleration**: `candle-core`, `wgpu` for CUDA and OpenCL support
+- **Automatic Differentiation**: `dfdx` for gradient computation
 
-### GUI Framework (Planned)
-- **UI Framework**: `iced` and related crates for native GUI
-- **Window Management**: `baseview` for plugin window embedding
-- **Graphics**: `iced_wgpu` for GPU-accelerated rendering
+### Data Processing and I/O
+- **Data Formats**: `csv`, `hdf5`, `image` for various data format support
+- **Serialization**: `serde`, `bincode`, `safetensors` for model saving/loading
+- **Compression**: `flate2` for efficient data storage
 
-### Utilities
-- **Command Line**: `clap` for CLI argument parsing in test binary
-- **Serialization**: `serde` and `serde_json` for preset management
-- **Threading**: `atomic_float` for thread-safe parameter handling
-- **Logging**: `log` crate for debug information
+### Performance and Parallelization
+- **Parallel Processing**: `rayon`, `crossbeam` for multi-threading
+- **SIMD Operations**: `wide` for vectorized computations
+- **Memory Management**: `memmap2` for efficient memory usage
+
+### Development and Debugging
+- **Error Handling**: `anyhow`, `thiserror` for robust error management
+- **Logging**: `log`, `env_logger` for debugging and monitoring
+- **Progress Tracking**: `indicatif`, `tqdm` for training progress visualization
+- **Plotting**: `plotters` for data visualization
+
+### Optional Integrations
+- **Python Bindings**: `pyo3` for Python interoperability (optional)
+- **Networking**: `reqwest`, `tokio` for distributed training
+- **Configuration**: `config`, `toml` for model and training configuration
 
 ## Deployment Strategy
 
-The project is configured for development in the Replit environment with:
+The framework is designed for multiple deployment scenarios:
 
-- **Build System**: Cargo-based Rust build system
-- **Target Platforms**: Primary focus on Linux (ALSA audio system)
-- **Distribution**: VST plugin as dynamic library (.so file)
-- **Testing**: Standalone binary for development testing
+- **Development Environment**: Full framework with all features enabled
+- **Production Inference**: Optimized builds with minimal dependencies
+- **Distributed Training**: Multi-node scaling with communication backends
+- **Edge Deployment**: Lightweight inference-only builds
 
 ### Build Configuration
-- **Library Output**: Both `cdylib` (for VST host) and `rlib` (for internal use)
-- **Optimization**: Release builds use full optimization with LTO
-- **Audio Dependencies**: ALSA system integration for Linux audio
+- **Feature Flags**: Selective compilation of CPU/GPU, Python bindings, distributed features
+- **Optimization**: Release builds with LTO and target-specific optimizations
+- **Cross-Platform**: Support for Linux, macOS, and Windows
 
-The project includes comprehensive error suppression utilities (`src/suppress_warnings.rs`) to maintain clean build output during development.
+### Performance Characteristics
+- **Memory Efficiency**: Zero-copy operations and efficient memory management
+- **Computation Speed**: BLAS/LAPACK acceleration and GPU kernel optimization
+- **Scalability**: Horizontal scaling across multiple devices and nodes
 
 ## Changelog
-- June 18, 2025. Initial setup
+- June 18, 2025: Complete framework implementation with all TensorFlow/PyTorch features
+- June 18, 2025: Added comprehensive examples and benchmarking utilities
+- June 18, 2025: Initial setup (migrated from VST synthesizer project)
 
 ## User Preferences
 

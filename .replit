@@ -16,6 +16,10 @@ author = "agent"
 task = "workflow.run"
 args = "RustSynthBuilder"
 
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "BuildMLFramework"
+
 [[workflows.workflow]]
 name = "RustSynthBuilder"
 author = "agent"
@@ -23,6 +27,14 @@ author = "agent"
 [[workflows.workflow.tasks]]
 task = "shell.exec"
 args = "cargo build"
+
+[[workflows.workflow]]
+name = "BuildMLFramework"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cargo build --release"
 
 [deployment]
 run = ["sh", "-c", "bash -c \"which cargo && cargo build\""]
