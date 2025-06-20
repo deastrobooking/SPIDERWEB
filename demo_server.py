@@ -29,6 +29,194 @@ except ImportError:
 
 app = Flask(__name__)
 
+@app.route('/')
+def index():
+    """Main dashboard for ML-as-a-Service Platform"""
+    return '''
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ML-as-a-Service Platform</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0f0f0f; color: #fff; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .header { text-align: center; margin-bottom: 40px; }
+        .header h1 { font-size: 2.5rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px; }
+        .header p { font-size: 1.2rem; color: #ccc; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 40px; }
+        .card { background: linear-gradient(135deg, #1e1e1e 0%, #2d2d2d 100%); border-radius: 12px; padding: 24px; border: 1px solid #333; }
+        .card h3 { color: #667eea; margin-bottom: 16px; font-size: 1.3rem; }
+        .card p { color: #ccc; margin-bottom: 16px; line-height: 1.6; }
+        .status { padding: 8px 16px; border-radius: 20px; font-size: 0.9rem; font-weight: 500; }
+        .status.configured { background: #065f46; color: #10b981; }
+        .status.not-configured { background: #7f1d1d; color: #f87171; }
+        .button { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 12px 24px; border: none; border-radius: 8px; cursor: pointer; font-size: 1rem; text-decoration: none; display: inline-block; margin-top: 12px; }
+        .button:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3); }
+        .api-section { background: #1a1a1a; border-radius: 12px; padding: 24px; margin-top: 40px; }
+        .api-section h2 { color: #667eea; margin-bottom: 20px; }
+        .endpoint { background: #2d2d2d; border-radius: 8px; padding: 16px; margin-bottom: 12px; border-left: 4px solid #667eea; }
+        .endpoint code { color: #10b981; font-family: 'Monaco', 'Menlo', monospace; }
+        .endpoint .method { background: #065f46; color: #10b981; padding: 4px 8px; border-radius: 4px; font-size: 0.8rem; margin-right: 8px; }
+        .method.post { background: #7c2d12; color: #fb923c; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>ML-as-a-Service Platform</h1>
+            <p>Comprehensive AI-Enhanced Machine Learning Development Platform</p>
+        </div>
+        
+        <div class="grid">
+            <div class="card">
+                <h3>AI Service Integration</h3>
+                <p>Multi-provider AI orchestration with OpenAI, Anthropic, Perplexity, Gemini, and Grok for enhanced model development.</p>
+                <div id="service-status">Loading service status...</div>
+                <a href="/v1/ai/status" class="button">Check AI Services</a>
+            </div>
+            
+            <div class="card">
+                <h3>Model Enhancement</h3>
+                <p>Comprehensive model optimization using advanced AI reasoning, synthetic data generation, and real-time research integration.</p>
+                <a href="#enhance" class="button" onclick="testEnhancement()">Test Enhancement</a>
+            </div>
+            
+            <div class="card">
+                <h3>Synthetic Data Generation</h3>
+                <p>Generate high-quality training data using OpenAI's advanced language models for improved model performance.</p>
+                <a href="#synthetic" class="button" onclick="testSynthetic()">Generate Data</a>
+            </div>
+            
+            <div class="card">
+                <h3>Advanced Analysis</h3>
+                <p>Deep model analysis and reasoning using Anthropic's Claude for interpretability and optimization insights.</p>
+                <a href="#analyze" class="button" onclick="testAnalysis()">Analyze Model</a>
+            </div>
+        </div>
+        
+        <div class="api-section">
+            <h2>API Endpoints</h2>
+            <div class="endpoint">
+                <span class="method">GET</span>
+                <code>/v1/ai/status</code> - Check AI service configuration and capabilities
+            </div>
+            <div class="endpoint">
+                <span class="method post">POST</span>
+                <code>/v1/ai/enhance</code> - Comprehensive multi-provider model enhancement
+            </div>
+            <div class="endpoint">
+                <span class="method post">POST</span>
+                <code>/v1/ai/synthetic-data</code> - Generate synthetic training data
+            </div>
+            <div class="endpoint">
+                <span class="method post">POST</span>
+                <code>/v1/ai/analyze</code> - Advanced model analysis and reasoning
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        async function loadServiceStatus() {
+            try {
+                const response = await fetch('/v1/ai/status');
+                const data = await response.json();
+                const statusDiv = document.getElementById('service-status');
+                
+                let configuredServices = 0;
+                let totalServices = 0;
+                
+                Object.values(data.services).forEach(service => {
+                    if (service.configured !== undefined) {
+                        totalServices++;
+                        if (service.configured) configuredServices++;
+                    }
+                });
+                
+                statusDiv.innerHTML = `
+                    <div style="margin-top: 12px;">
+                        <div class="status ${data.status === 'operational' ? 'configured' : 'not-configured'}">
+                            ${configuredServices}/${totalServices} AI Services Configured
+                        </div>
+                    </div>
+                `;
+            } catch (error) {
+                document.getElementById('service-status').innerHTML = '<div class="status not-configured">Error loading status</div>';
+            }
+        }
+        
+        async function testEnhancement() {
+            const payload = {
+                model_description: "Image classification model for autonomous vehicles",
+                training_data_sample: ["highway_scene_1.jpg", "urban_intersection_2.jpg", "night_driving_3.jpg"],
+                performance_metrics: { accuracy: 0.94, precision: 0.91, recall: 0.89 },
+                enhancement_config: { generate_synthetic_data: true, optimize_training_strategy: true }
+            };
+            
+            try {
+                const response = await fetch('/v1/ai/enhance', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const result = await response.json();
+                alert('Enhancement completed! Check browser console for details.');
+                console.log('Enhancement Result:', result);
+            } catch (error) {
+                alert('Enhancement test failed: ' + error.message);
+            }
+        }
+        
+        async function testSynthetic() {
+            const payload = {
+                model_description: "Natural language processing model for customer sentiment analysis",
+                existing_data: ["Great product, highly recommend!", "Poor quality, disappointed", "Average experience"],
+                target_count: 10
+            };
+            
+            try {
+                const response = await fetch('/v1/ai/synthetic-data', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const result = await response.json();
+                alert('Synthetic data generated! Check browser console for details.');
+                console.log('Synthetic Data:', result);
+            } catch (error) {
+                alert('Synthetic data generation failed: ' + error.message);
+            }
+        }
+        
+        async function testAnalysis() {
+            const payload = {
+                model_description: "Deep learning model for medical image diagnosis",
+                data_sample: ["chest_xray_1.jpg", "chest_xray_2.jpg", "chest_xray_3.jpg"],
+                performance_metrics: { sensitivity: 0.92, specificity: 0.88, auc_roc: 0.94 }
+            };
+            
+            try {
+                const response = await fetch('/v1/ai/analyze', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const result = await response.json();
+                alert('Analysis completed! Check browser console for details.');
+                console.log('Analysis Result:', result);
+            } catch (error) {
+                alert('Analysis test failed: ' + error.message);
+            }
+        }
+        
+        loadServiceStatus();
+    </script>
+</body>
+</html>
+    '''
+
 class AIServiceOrchestrator:
     def __init__(self):
         self.openai_client = None
