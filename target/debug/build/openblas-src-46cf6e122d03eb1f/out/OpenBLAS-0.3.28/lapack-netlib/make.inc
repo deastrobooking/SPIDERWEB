@@ -1,0 +1,34 @@
+FC          = gfortran
+override FFLAGS      = -O2 -Wall -frecursive -fno-optimize-sibling-calls -m64 -fPIC -msse3 -mssse3 -msse4.1 -mavx -mavx2 -fno-tree-vectorize
+FFLAGS_DRV  = -O2 -Wall -frecursive -fno-optimize-sibling-calls -m64 -fPIC -msse3 -mssse3 -msse4.1 -mavx -mavx2
+POPTS       = -Wall -frecursive -fno-optimize-sibling-calls -m64 -fPIC -msse3 -mssse3 -msse4.1 -mavx -mavx2 -pg -fno-inline
+FFLAGS_NOOPT       = -O0 -Wall -frecursive -fno-optimize-sibling-calls -m64 -fPIC -msse3 -mssse3 -msse4.1 -mavx -mavx2
+PNOOPT      = -Wall -frecursive -fno-optimize-sibling-calls -m64 -fPIC -msse3 -mssse3 -msse4.1 -mavx -mavx2 -pg -fno-inline -O0
+LDFLAGS     = -O2 -Wall -frecursive -fno-optimize-sibling-calls -m64 -fPIC -msse3 -mssse3 -msse4.1 -mavx -mavx2 -lm -lpthread
+CC          = cc
+override CFLAGS      = -isystem /nix/store/a6yfhfzpmvz8v73796djqk811p4b6wan-freetype-2.13.2-dev/include -isystem /nix/store/62fdhzhrs5smykxkxvjhw3y6yck2iih4-brotli-1.1.0-dev/include -isystem /nix/store/qq2plda7pqjxh7dywyzsikxcbjqm3c2a-alsa-lib-1.2.11-dev/include -isystem /nix/store/s0mcb1kw1a4a9vdvcm8jpsdpn6bqkljm-fontconfig-2.15.0-dev/include -isystem /nix/store/qj9byzfvh7dd61kk0aglj7cwqj1xqg6l-zlib-1.3.1-dev/include -isystem /nix/store/191vca5vdxdlr32k2hpzd66mic98930f-openssl-3.0.13-dev/include -isystem /nix/store/5yqz7al0lv1jhkmbka3ghswqk5wlxvq5-bzip2-1.0.8-dev/include -isystem /nix/store/1rdmf4lap3f82pqdlmrgj1vjs08dk5xw-libpng-apng-1.6.43-dev/include -O2 -DMAX_STACK_ALLOC=2048 -Wall -m64 -DF_INTERFACE_GFORT -fPIC -DC_LAPACK -DSMP_SERVER -DNO_WARMUP -DMAX_CPU_NUMBER=8 -DMAX_PARALLEL_NUMBER=1 -DBUILD_SINGLE=1 -DBUILD_DOUBLE=1 -DBUILD_COMPLEX=1 -DBUILD_COMPLEX16=1 -DVERSION="0.3.28" -msse3 -mssse3 -msse4.1 -mavx -mavx2 -mavx2 -UASMNAME -UASMFNAME -UNAME -UCNAME -UCHAR_NAME -UCHAR_CNAME -DASMNAME= -DASMFNAME=_ -DNAME=_ -DCNAME= -DCHAR_NAME="_" -DCHAR_CNAME="" -DNO_AFFINITY -I. -DHAVE_LAPACK_CONFIG_H
+AR          = ar
+ARFLAGS     =  -ru
+RANLIB      = ranlib
+LAPACKLIB   = ../../libopenblas_zenp-r0.3.28.a
+TMGLIB      = ../../../libopenblas_zenp-r0.3.28.a
+BLASLIB     = ../../../libopenblas_zenp-r0.3.28.a
+LAPACKELIB  = ../../../libopenblas_zenp-r0.3.28.a
+LAPACKLIB_P = ../libopenblas_zenp-r0.3.28_p.a
+SUFFIX      = o
+PSUFFIX     = po
+CEXTRALIB   = -lm -lpthread
+TIMER       = INT_ETIME
+LOADER      = gfortran -pthread
+BUILD_DEPRECATED      = 1
+BUILD_SINGLE      = 1
+BUILD_DOUBLE      = 1
+BUILD_COMPLEX      = 1
+BUILD_COMPLEX16      = 1
+LAPACKE_WITH_TMG      = 1
+SHELL = /bin/sh
+PLAT = _LINUX
+DRVOPTS  = $(NOOPT)
+#ARCHFLAGS= $(ARFLAGS) -ru
+#RANLIB   = ranlib
+
