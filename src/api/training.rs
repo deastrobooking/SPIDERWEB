@@ -8,6 +8,7 @@ use chrono::{DateTime, Utc};
 
 use crate::api::ApiState;
 use crate::wrappers::{ModelConfig, TrainingData, Framework};
+use crate::ai_services::{AIServiceOrchestrator, ModelEnhancementConfig};
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct TrainingRequest {

@@ -4,6 +4,7 @@ pub mod training;
 pub mod inference;
 pub mod auth;
 pub mod models;
+pub mod ai_enhancement;
 
 use actix_web::{web, App, HttpServer, Result as ActixResult, middleware::Logger};
 use std::sync::Arc;
