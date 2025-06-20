@@ -8,12 +8,18 @@ use tokio::join;
 
 use super::openai::OpenAIService;
 use super::anthropic::AnthropicService;
+use super::perplexity::PerplexityService;
+use super::gemini::GeminiService;
+use super::grok::GrokService;
 
 /// Orchestrates multiple AI services for enhanced model training and analysis
 #[derive(Clone)]
 pub struct AIServiceOrchestrator {
     openai: OpenAIService,
     anthropic: AnthropicService,
+    perplexity: PerplexityService,
+    gemini: GeminiService,
+    grok: GrokService,
 }
 
 impl AIServiceOrchestrator {
@@ -21,10 +27,19 @@ impl AIServiceOrchestrator {
         Self {
             openai: OpenAIService::new(),
             anthropic: AnthropicService::new(),
+            perplexity: PerplexityService::new(),
+            gemini: GeminiService::new(),
+            grok: GrokService::new(),
         }
     }
 
-    pub fn with_keys(openai_key: Option<String>, anthropic_key: Option<String>) -> Self {
+    pub fn with_keys(
+        openai_key: Option<String>, 
+        anthropic_key: Option<String>,
+        perplexity_key: Option<String>,
+        gemini_key: Option<String>,
+        grok_key: Option<String>,
+    ) -> Self {
         let openai = if let Some(key) = openai_key {
             OpenAIService::with_api_key(key)
         } else {
@@ -37,7 +52,25 @@ impl AIServiceOrchestrator {
             AnthropicService::new()
         };
 
-        Self { openai, anthropic }
+        let perplexity = if let Some(key) = perplexity_key {
+            PerplexityService::with_api_key(key)
+        } else {
+            PerplexityService::new()
+        };
+
+        let gemini = if let Some(key) = gemini_key {
+            GeminiService::with_api_key(key)
+        } else {
+            GeminiService::new()
+        };
+
+        let grok = if let Some(key) = grok_key {
+            GrokService::with_api_key(key)
+        } else {
+            GrokService::new()
+        };
+
+        Self { openai, anthropic, perplexity, gemini, grok }
     }
 
     /// Comprehensive model enhancement pipeline

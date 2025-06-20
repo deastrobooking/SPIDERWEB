@@ -3,7 +3,6 @@ cargo:rerun-if-env-changed=OPENBLAS_CC
 cargo:rerun-if-env-changed=OPENBLAS_HOSTCC
 cargo:rerun-if-env-changed=OPENBLAS_FC
 cargo:rerun-if-env-changed=OPENBLAS_RANLIB
-cargo:warning=OpenBLAS: Detecting fortran compiler failed. Only BLAS and f2c-converted LAPACK are compiled.
 cargo:rustc-link-search=/home/runner/workspace/target/debug/build/openblas-src-8038047ae801828c/out/OpenBLAS-0.3.28
 cargo:rustc-link-search=/nix/store/2j35g928qczhj13kfi7yxm09wg2jiv14-clang-18.1.8-lib/lib
 cargo:rustc-link-search=/nix/store/4krab2h0hd4wvxxmscxrw21pl77j4i7j-gcc-13.3.0/lib
