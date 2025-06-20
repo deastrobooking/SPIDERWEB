@@ -1,0 +1,18 @@
+cargo:rerun-if-env-changed=OPENBLAS_TARGET
+cargo:rerun-if-env-changed=OPENBLAS_CC
+cargo:rerun-if-env-changed=OPENBLAS_HOSTCC
+cargo:rerun-if-env-changed=OPENBLAS_FC
+cargo:rerun-if-env-changed=OPENBLAS_RANLIB
+cargo:warning=OpenBLAS: Detecting fortran compiler failed. Only BLAS and f2c-converted LAPACK are compiled.
+cargo:rustc-link-search=/home/runner/workspace/target/debug/build/openblas-src-46cf6e122d03eb1f/out/OpenBLAS-0.3.28
+cargo:rustc-link-search=/nix/store/2j35g928qczhj13kfi7yxm09wg2jiv14-clang-18.1.8-lib/lib
+cargo:rustc-link-search=/nix/store/4krab2h0hd4wvxxmscxrw21pl77j4i7j-gcc-13.3.0/lib
+cargo:rustc-link-search=/nix/store/4krab2h0hd4wvxxmscxrw21pl77j4i7j-gcc-13.3.0/lib/gcc/x86_64-unknown-linux-gnu/13.3.0
+cargo:rustc-link-search=/nix/store/j8rzqx7farv0w3isp9z943zy437zk02f-gcc-13.3.0-libgcc/lib
+cargo:rustc-link-search=/nix/store/wn7v2vhyyyi6clcyn0s9ixvl7d4d87ic-glibc-2.40-36/lib
+cargo:rustc-link-search=/nix/store/ybjcla5bhj8g1y84998pn4a2drfxybkv-gcc-13.3.0-lib/lib
+cargo:rustc-link-search=/usr/lib
+cargo:rustc-link-search=/usr/lib/x86_64-linux-gnu
+cargo:rustc-link-search=/usr/lib64
+cargo:rustc-link-lib=c
+cargo:rustc-link-lib=static=openblas

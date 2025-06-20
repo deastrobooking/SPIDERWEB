@@ -1,0 +1,8 @@
+/home/runner/workspace/target/debug/deps/liblanguage_tags-f899999bd72a4714.rmeta: /home/runner/workspace/.local/share/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/language-tags-0.3.2/src/lib.rs /home/runner/workspace/.local/share/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/language-tags-0.3.2/src/iana_registry.rs
+
+/home/runner/workspace/target/debug/deps/liblanguage_tags-f899999bd72a4714.rlib: /home/runner/workspace/.local/share/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/language-tags-0.3.2/src/lib.rs /home/runner/workspace/.local/share/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/language-tags-0.3.2/src/iana_registry.rs
+
+/home/runner/workspace/target/debug/deps/language_tags-f899999bd72a4714.d: /home/runner/workspace/.local/share/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/language-tags-0.3.2/src/lib.rs /home/runner/workspace/.local/share/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/language-tags-0.3.2/src/iana_registry.rs
+
+/home/runner/workspace/.local/share/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/language-tags-0.3.2/src/lib.rs:
+/home/runner/workspace/.local/share/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/language-tags-0.3.2/src/iana_registry.rs:
