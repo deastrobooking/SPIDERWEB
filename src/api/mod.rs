@@ -44,6 +44,13 @@ pub async fn create_api_server() -> ActixResult<()> {
                     .service(models::get_model_info)
                     .service(models::upload_model)
                     .service(models::delete_model)
+                    .service(
+                        web::scope("/ai")
+                            .route("/enhance", web::post().to(ai_enhancement::enhance_model))
+                            .route("/synthetic-data", web::post().to(ai_enhancement::generate_synthetic_data))
+                            .route("/analyze", web::post().to(ai_enhancement::analyze_model))
+                            .route("/status", web::get().to(ai_enhancement::get_service_status))
+                    )
             )
             .service(
                 web::scope("/health")

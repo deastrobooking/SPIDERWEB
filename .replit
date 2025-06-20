@@ -1,4 +1,4 @@
-modules = ["rust", "python-3.11"]
+modules = ["rust", "python-3.11", "python3"]
 
 [nix]
 channel = "stable-24_05"
@@ -23,6 +23,10 @@ args = "BuildMLFramework"
 [[workflows.workflow.tasks]]
 task = "workflow.run"
 args = "MLServer"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "MLDemoServer"
 
 [[workflows.workflow]]
 name = "RustSynthBuilder"
@@ -49,5 +53,18 @@ task = "shell.exec"
 args = "cargo run --bin ml_server"
 waitForPort = 5000
 
+[[workflows.workflow]]
+name = "MLDemoServer"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "python3 demo_server.py"
+waitForPort = 5000
+
 [deployment]
 run = ["sh", "-c", "bash -c \"which cargo && cargo build\""]
+
+[[ports]]
+localPort = 5000
+externalPort = 80
