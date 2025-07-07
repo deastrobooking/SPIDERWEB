@@ -1,52 +1,70 @@
-# Rust ML Framework Documentation
+# Documentation Index
 
-Welcome to the comprehensive documentation for the Rust ML Framework - a complete TensorFlow and PyTorch clone written in Rust.
+## ML-as-a-Service Platform Documentation
 
-## Table of Contents
+This directory contains comprehensive documentation for the ML-as-a-Service platform with native Rust framework.
 
-1. [Getting Started](getting-started.md)
-2. [Core Concepts](core-concepts.md)
-3. [API Reference](api-reference.md)
-4. [Tutorials](tutorials/)
-5. [Examples](examples.md)
-6. [Performance Guide](performance.md)
-7. [Contributing](contributing.md)
-8. [FAQ](faq.md)
+## Quick Navigation
 
-## Quick Links
+### Getting Started
+- **[Getting Started Guide](getting-started.md)** - Complete setup and first steps
+- **[Examples](examples.md)** - Code examples and tutorials
+- **[FAQ](faq.md)** - Frequently asked questions
 
-- **Installation**: See [Getting Started](getting-started.md)
-- **First Model**: Check out [Basic Tutorial](tutorials/basic-tutorial.md)
-- **API Docs**: Browse [API Reference](api-reference.md)
-- **Examples**: View [Examples](examples.md)
+### API Documentation
+- **[API Reference](api-reference.md)** - Complete API endpoint documentation
+- **[API Documentation](api-documentation.md)** - Detailed API usage guide
 
-## Framework Overview
+### Architecture & Design
+- **[Advanced Architecture](advanced-architecture.md)** - In-depth system architecture
+- **[Core Concepts](core-concepts.md)** - Framework fundamentals
+- **[Framework Summary](framework-summary.md)** - Complete framework overview
 
-The Rust ML Framework provides a complete machine learning ecosystem with:
+### AI Services Integration
+- **[AI Services Summary](ai-services-summary.md)** - External AI provider integrations
 
-- **Tensor Operations**: N-dimensional arrays with automatic differentiation
-- **Neural Networks**: Modular layer system with PyTorch-style API
-- **Optimization**: Full suite of optimizers (SGD, Adam, AdamW, etc.)
-- **Data Loading**: Efficient data pipelines and preprocessing
-- **Computer Vision**: Pre-built CNN architectures and image processing
-- **NLP**: Text processing, tokenization, and language models
-- **Distributed Training**: Multi-GPU and multi-node support
+### Development & Deployment
+- **[Production Demo](production-demo.md)** - Production deployment examples
+- **[Performance Guide](performance.md)** - Optimization and performance tuning
+- **[Contributing Guide](contributing.md)** - Contribution guidelines
 
-## Key Features
+### Project Information
+- **[Roadmap](roadmap.md)** - Development roadmap and next steps
+- **[Changelog](changelog.md)** - Version history and updates
 
-- **Performance**: BLAS/LAPACK acceleration, SIMD operations, GPU support
-- **Safety**: Rust's memory safety without garbage collection overhead
-- **Compatibility**: APIs similar to PyTorch and TensorFlow
-- **Modularity**: Composable components for flexible model building
-- **Comprehensive**: Everything needed for ML from research to production
+### Tutorials
+- **[Tutorials](tutorials/)** - Step-by-step tutorials and guides
+  - [Basic Tutorial](tutorials/basic-tutorial.md)
 
-## Getting Help
+## Documentation Structure
 
-- Check the [FAQ](faq.md) for common questions
-- Browse [Tutorials](tutorials/) for step-by-step guides
-- See [Examples](examples.md) for code samples
-- Review [API Reference](api-reference.md) for detailed function documentation
+```
+docs/
+├── README.md                    # This index file
+├── getting-started.md          # Quick setup guide
+├── api-reference.md            # API endpoints reference
+├── api-documentation.md        # Detailed API guide
+├── advanced-architecture.md    # System architecture
+├── core-concepts.md            # Framework concepts
+├── framework-summary.md        # Complete overview
+├── ai-services-summary.md      # AI integrations
+├── production-demo.md          # Production examples
+├── performance.md              # Performance guide
+├── contributing.md             # Development guide
+├── roadmap.md                  # Future plans
+├── changelog.md                # Version history
+├── examples.md                 # Code examples
+├── faq.md                      # Common questions
+└── tutorials/                  # Tutorial directory
+    └── basic-tutorial.md
+```
 
-## License
+## Platform Overview
 
-MIT License - see [LICENSE](../LICENSE) for details.
+The ML-as-a-Service platform combines:
+- **External AI Integration**: OpenAI, Anthropic, Perplexity, Gemini, Grok
+- **Native Rust Framework**: High-performance ML implementations
+- **RESTful API**: Public training and inference endpoints
+- **Web Dashboard**: Interactive testing and monitoring
+
+Start with the [Getting Started Guide](getting-started.md) for immediate setup, or explore the [API Reference](api-reference.md) for integration details.
