@@ -113,6 +113,8 @@ The framework is designed for multiple deployment scenarios:
 - **Scalability**: Horizontal scaling across multiple devices and nodes
 
 ## Changelog
+- July 7, 2025: Project Cleanup - Removed all VST synthesizer references and build artifacts
+- July 7, 2025: Workflow Optimization - Renamed RustSynthBuilder to BuildMLCore for ML framework focus
 - July 7, 2025: Documentation Organization - Moved all documentation files from root to organized docs/ directory structure
 - July 7, 2025: Documentation Cleanup - Consolidated duplicate files and created comprehensive documentation index
 - July 7, 2025: README Restructure - Created focused main README with clear navigation to detailed documentation
@@ -139,7 +141,7 @@ The framework is designed for multiple deployment scenarios:
 - June 18, 2025: Added working examples for neural networks and computer vision demos
 - June 18, 2025: Complete framework implementation with all TensorFlow/PyTorch features
 - June 18, 2025: Added comprehensive examples and benchmarking utilities
-- June 18, 2025: Initial setup (migrated from VST synthesizer project)
+- June 18, 2025: Initial setup of ML training platform foundation
 
 ## User Preferences
 
