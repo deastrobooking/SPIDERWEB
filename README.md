@@ -1,3 +1,5 @@
+[![Deploy to Azure Container Apps](https://github.com/deastrobooking/SPIDERWEB/actions/workflows/azure-deploy.yml/badge.svg)](https://github.com/deastrobooking/SPIDERWEB/actions/workflows/azure-deploy.yml)
+
 # SPIDERWEB: ML-as-a-Service Platform
 
 A production-ready, hybrid machine learning platform combining native Rust ML framework capabilities with multi-provider AI service orchestration. SPIDERWEB provides a unified API for model training, enhancement, and deployment with seamless integration across OpenAI, Anthropic, Perplexity, Gemini, and Grok.
