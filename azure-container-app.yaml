@@ -1,0 +1,72 @@
+# Azure Container Apps configuration for SPIDERWEB
+# Deploy with: az containerapp create --resource-group <rg> --environment <env> --yaml azure-container-app.yaml
+
+properties:
+  configuration:
+    activeRevisionsMode: Single
+    ingress:
+      external: true
+      targetPort: 5000
+      transport: http
+      allowInsecure: false
+      traffic:
+        - latestRevision: true
+          weight: 100
+    secrets:
+      - name: openai-api-key
+        value: "" # Set via Azure Key Vault or CLI
+      - name: anthropic-api-key
+        value: "" # Set via Azure Key Vault or CLI
+      - name: perplexity-api-key
+        value: "" # Set via Azure Key Vault or CLI
+      - name: gemini-api-key
+        value: "" # Set via Azure Key Vault or CLI
+      - name: xai-api-key
+        value: "" # Set via Azure Key Vault or CLI
+    registries:
+      - server: <your-acr>.azurecr.io
+        username: <your-acr>
+        passwordSecretRef: registry-password
+  template:
+    containers:
+      - name: spiderweb-ml
+        image: <your-acr>.azurecr.io/spiderweb-ml:latest
+        env:
+          - name: OPENAI_API_KEY
+            secretRef: openai-api-key
+          - name: ANTHROPIC_API_KEY
+            secretRef: anthropic-api-key
+          - name: PERPLEXITY_API_KEY
+            secretRef: perplexity-api-key
+          - name: GEMINI_API_KEY
+            secretRef: gemini-api-key
+          - name: XAI_API_KEY
+            secretRef: xai-api-key
+          - name: FLASK_ENV
+            value: production
+          - name: PYTHONUNBUFFERED
+            value: "1"
+        resources:
+          cpu: 1.0
+          memory: 2Gi
+        probes:
+          - type: liveness
+            httpGet:
+              path: /health
+              port: 5000
+            initialDelaySeconds: 10
+            periodSeconds: 30
+          - type: readiness
+            httpGet:
+              path: /health
+              port: 5000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+    scale:
+      minReplicas: 1
+      maxReplicas: 10
+      rules:
+        - name: http-scaling
+          http:
+            metadata:
+              concurrentRequests: "50"
