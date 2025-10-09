@@ -295,4 +295,6 @@ For questions, issues, or feature requests, please refer to the documentation in
 
 ---
 
-**Built with ❤️ using Rust and Python**
+**Built with ❤️ , Rust , and Python**
+
+
