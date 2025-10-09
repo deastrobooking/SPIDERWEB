@@ -1,38 +1,56 @@
 # Documentation Index
 
-## ML-as-a-Service Platform Documentation
+## SPIDERWEB ML-as-a-Service Platform Documentation
 
-This directory contains comprehensive documentation for the ML-as-a-Service platform with native Rust framework.
+This directory contains comprehensive documentation for the SPIDERWEB ML-as-a-Service platform with native Rust framework.
 
-## Quick Navigation
+## 🚀 Quick Start
 
-### Getting Started
+- **[Quick Start Guide](../QUICKSTART.md)** - Get running in 5 minutes
 - **[Getting Started Guide](getting-started.md)** - Complete setup and first steps
 - **[Examples](examples.md)** - Code examples and tutorials
 - **[FAQ](faq.md)** - Frequently asked questions
 
-### API Documentation
+## 🌐 Azure Deployment
+
+- **[Azure Deployment Guide](deployment-azure.md)** - Complete Azure deployment instructions
+- **[CI/CD Setup](ci-cd-setup.md)** - Automated deployment with GitHub Actions
+- **[Deployment Checklist](deployment-checklist.md)** - Pre and post-deployment checklist
+
+## 📡 API Documentation
+
 - **[API Reference](api-reference.md)** - Complete API endpoint documentation
 - **[API Documentation](api-documentation.md)** - Detailed API usage guide
 
-### Architecture & Design
+## 🏗️ Architecture & Design
+
 - **[Advanced Architecture](advanced-architecture.md)** - In-depth system architecture
 - **[Core Concepts](core-concepts.md)** - Framework fundamentals
 - **[Framework Summary](framework-summary.md)** - Complete framework overview
 
-### AI Services Integration
-- **[AI Services Summary](ai-services-summary.md)** - External AI provider integrations
+## 🤖 AI Services Integration
 
-### Development & Deployment
+- **[AI Services Summary](ai-services-summary.md)** - External AI provider integrations
+  - OpenAI Integration
+  - Anthropic Claude Integration
+  - Perplexity Integration
+  - Google Gemini Integration
+  - xAI Grok Integration
+
+## 🔧 Development & Operations
+
 - **[Production Demo](production-demo.md)** - Production deployment examples
 - **[Performance Guide](performance.md)** - Optimization and performance tuning
 - **[Contributing Guide](contributing.md)** - Contribution guidelines
 
-### Project Information
+## 📚 Project Information
+
 - **[Roadmap](roadmap.md)** - Development roadmap and next steps
 - **[Changelog](changelog.md)** - Version history and updates
+- **[Organization Summary](ORGANIZATION_SUMMARY.md)** - Project organization
 
-### Tutorials
+## 🎓 Tutorials
+
 - **[Tutorials](tutorials/)** - Step-by-step tutorials and guides
   - [Basic Tutorial](tutorials/basic-tutorial.md)
 
