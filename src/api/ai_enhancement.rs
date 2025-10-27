@@ -1,4 +1,42 @@
-// AI Enhancement API endpoints for external service integration
+//! AI Enhancement API Module
+//!
+//! This module provides REST API endpoints for AI-enhanced model development using
+//! external AI service providers (OpenAI, Anthropic, Perplexity, Gemini, Grok).
+//!
+//! # Features
+//!
+//! - **Comprehensive Model Enhancement**: Multi-provider orchestration for model optimization
+//! - **Synthetic Data Generation**: AI-powered training data augmentation
+//! - **Advanced Model Analysis**: Deep reasoning and architectural recommendations
+//! - **Research Integration**: Real-time incorporation of latest ML developments
+//!
+//! # API Endpoints
+//!
+//! - `POST /v1/ai/enhance` - Full model enhancement pipeline
+//! - `POST /v1/ai/synthetic-data` - Generate synthetic training data
+//! - `POST /v1/ai/analyze` - Advanced model analysis
+//! - `GET /v1/ai/status` - Service configuration status
+//!
+//! # Example Usage
+//!
+//! ```rust,no_run
+//! use actix_web::{web, App, HttpServer};
+//! use crate::api::ai_enhancement;
+//!
+//! #[actix_web::main]
+//! async fn main() -> std::io::Result<()> {
+//!     HttpServer::new(|| {
+//!         App::new()
+//!             .route("/v1/ai/enhance", web::post().to(ai_enhancement::enhance_model))
+//!             .route("/v1/ai/synthetic-data", web::post().to(ai_enhancement::generate_synthetic_data))
+//!             .route("/v1/ai/analyze", web::post().to(ai_enhancement::analyze_model))
+//!             .route("/v1/ai/status", web::get().to(ai_enhancement::get_service_status))
+//!     })
+//!     .bind("0.0.0.0:5000")?
+//!     .run()
+//!     .await
+//! }
+//! ```
 
 use actix_web::{web, HttpResponse, Result as ActixResult};
 use serde::{Deserialize, Serialize};
